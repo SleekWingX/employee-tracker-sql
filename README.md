@@ -1,5 +1,9 @@
 # Employee Tracker SQL
 
+![alt text](image.png)
+![alt text](image-1.png)
+
+
 ## Description
 This is a sql database that stores employee information, including earnings, management level, and names, and allows you to access them using a few queries.
 
