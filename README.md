@@ -2,7 +2,7 @@
 
 ![alt text](image.png)
 ![alt text](image-1.png)
-
+Video example: https://drive.google.com/file/d/1SmEp5qAH-KqhRExDov0HIL3VtOrlo_-l/view
 
 ## Description
 This is a sql database that stores employee information, including earnings, management level, and names, and allows you to access them using a few queries.
