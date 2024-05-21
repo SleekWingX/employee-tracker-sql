@@ -89,6 +89,17 @@ const addEmployee = async (firstName, lastName, roleId, managerId) => {
   }
 };
 
+const deleteDepartment = async (departmentId) => {
+  try {
+    const result = await pool.query('DELETE FROM department WHERE id = $1 RETURNING *', [departmentId]);
+    return result.rows[0];
+  } catch (error) {
+    console.error('Error deleting department:', error);
+    throw error;
+  }
+};
+
+
 const updateEmployeeRole = async (employeeId, roleId) => {
   try {
     const result = await pool.query('UPDATE employee SET role_id = $1 WHERE id = $2 RETURNING *', [roleId, employeeId]);
@@ -106,5 +117,6 @@ module.exports = {
   addDepartment,
   addRole,
   addEmployee,
+  deleteDepartment,
   updateEmployeeRole,
 };

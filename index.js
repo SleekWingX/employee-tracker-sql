@@ -6,6 +6,7 @@ const {
   addDepartment,
   addRole,
   addEmployee,
+  deleteDepartment,
   updateEmployeeRole,
 } = require('./db/queries');
 
@@ -21,6 +22,7 @@ async function main() {
     'Add a role',
     'Add an employee',
     'Update an employee role',
+    'Delete a department',
     'Exit',
   ];
 
@@ -57,6 +59,27 @@ async function main() {
       await addDepartment(departmentName);
       console.log('Department added successfully!');
       break;
+
+      case 'Delete a department':
+        const departmentsToDelete = await getAllDepartments();
+        if (departmentsToDelete.length === 0) {
+          console.log('There are no departments to delete.');
+          break;
+        }
+        const departmentChoices = departmentsToDelete.map(({ id, name }) => ({
+          name,
+          value: id,
+        }));
+        const { departmentId } = await inquirer.prompt({
+          type: 'list',
+          name: 'departmentId',
+          message: 'Select the department to delete:',
+          choices: departmentChoices,
+        });
+        await deleteDepartment(departmentId);
+        console.log('Department deleted successfully!');
+        break;
+  
 
     case 'Add a role':
       const departmentsForRole = await getAllDepartments();
